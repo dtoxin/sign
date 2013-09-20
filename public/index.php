@@ -8,10 +8,15 @@ use Core\Autoloader;
 define('APP_ENV', getenv('APP_ENV') ? getenv('APP_ENV') : 'production');
 
 // Взависимости от от APP_ENV загружаю конфигурацию
-$conf = require_once '../app/config/' . APP_ENV . '/path.php';
+$path = require_once '../app/config/' . APP_ENV . '/path.php';
 
 // Регистрируем свой ClassLoader
-require_once($conf['CORE_PATH'] . DIRECTORY_SEPARATOR . 'Autoloader.php');
+require ($path['CORE_PATH'] . DIRECTORY_SEPARATOR . 'Autoloader.php');
 spl_autoload_register('Autoloader::loadClass');
+spl_autoload_register('Autoloader::helpersLoadClass');
 
-
+/*$a = new \App\Controllers\MainController();
+$a->home();
+die();*/
+// Запускаем этот дъявольский веллосипед x)
+\App\Core\Application::start($path);

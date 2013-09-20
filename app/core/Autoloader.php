@@ -17,9 +17,13 @@ class Autoloader
             $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
         }
         $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
+        //@todo лишний коммент
+        $fileToLoad = realpath(__DIR__ . "/../../") . DIRECTORY_SEPARATOR . Autoloader::normalizePath($fileName);
+        //var_dump('controller: ' . $fileToLoad . " status: " . file_exists($fileToLoad) . '<br>');
+        if (file_exists($fileToLoad)) {
+            require $fileToLoad;
+        }
 
-        //var_dump(Autoloader::normalizePath($fileName)); die();
-        require realpath(__DIR__ . "/../../") . DIRECTORY_SEPARATOR . Autoloader::normalizePath($fileName);
     }
 
 
@@ -30,6 +34,11 @@ class Autoloader
         $lowerPath = strtolower($path);
         $result = str_replace(strtolower($fileName), $fileName, $lowerPath);
         return $result;
+    }
+
+    public static function helpersLoadClass($className)
+    {
+        require_once realpath(__DIR__ . '/../helpers' . DIRECTORY_SEPARATOR . $className . '.php' );
     }
 
 
