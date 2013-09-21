@@ -18,8 +18,15 @@ class User  extends DbModel
 
     //Поля (fields)
     protected $_columns = array(
-        'name' => 'name',
-        'psw' => 'psw'
+        'email'         => 'email',
+        'hash'          => 'hash',
+        'name'          => 'name',
+        'last_name'     => 'last_name',
+        'mid_name'      => 'mid_name',
+        'addition'      => 'addition',
+        'last_login'    => 'last_login',
+        'create_at'     => 'create_at',
+        'updated_at'    => 'updated_at'
     );
 
     public static function m($class =__CLASS__)
