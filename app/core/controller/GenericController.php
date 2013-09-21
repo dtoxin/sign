@@ -54,7 +54,7 @@ class GenericController {
             }
             //Формируем путь до layout
             //Если $layout false то по дефолту 'layout.php'
-            $_layout = ($layout) ? $layout : 'layout.php';
+            $_layout = ($layout) ? $layout : 'layout';
             if (file_exists($this->_template_path . $_layout . '.php')) {
                 $layout = include ($this->_template_path . $_layout .'.php');
             } else {
