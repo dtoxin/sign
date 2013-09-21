@@ -1,3 +1,7 @@
+<?php
+//регистрация скриптов view
+    $this->_addJs('/static/js/signin.js');
+?>
 <div class="login-form">
 <form class="form-container">
     <div class="form-title"><h2><?= L::t('Sign in'); ?></h2></div>
@@ -11,7 +15,7 @@
         <input class="form-field" type="text" name="password" />
     </div>
     <div class="submit-container">
-        <input class="btn" type="submit" value="Submit" />
+        <input class="btn" type="submit" value="<?= L::t('Enter'); ?>" />
     </div>
 </form>
 </div>

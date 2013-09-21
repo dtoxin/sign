@@ -1,3 +1,8 @@
+/**
+ * Тут буду хранить глобальные функции из других скриптов для вызова после загрузки страницы
+ * @type {{}}
+ */
+var globalFunc = {};
 
 $(document).ready(function() {
     bindingEvents();
@@ -8,7 +13,10 @@ function bindingEvents() {
         changeLocale($(this).val());
     });
 }
-
+/**
+ * Смена языка
+ * @param locale из select
+ */
 function changeLocale(locale) {
     var currLocale = getCookie('locale');
     if (currLocale != locale) {
@@ -18,6 +26,11 @@ function changeLocale(locale) {
     }
 }
 
+/**
+ * Получение cookie
+ * @param name bvz сookie
+ * @returns {string} Значение
+ */
 function getCookie(name) {
     var matches = document.cookie.match(new RegExp(
         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -25,6 +38,12 @@ function getCookie(name) {
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
+/**
+ * Установка cookie
+ * @param name имя
+ * @param value значение
+ * @param options опции (secure, expire, path etc)
+ */
 function setCookie(name, value, options) {
     options = options || {};
 

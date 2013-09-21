@@ -25,7 +25,12 @@
     </div> <br><br><br>
     <div class="content-wrapper">
         <div class="content">
-            <?php include $content; ?>
+            <?php echo $view; ?>
+            <?php /*ob_start(); */?><!--
+            <?php /*include $content; */?>
+            <?php /*$out .= ob_get_clean( ); */?>
+            <?php /*echo $out; */?>
+            --><?php /*ob_end_flush();*/?>
         </div>
     </div>
 </body>

@@ -48,19 +48,22 @@ class GenericController {
         try{
             ob_start();
             if (file_exists($this->_template_path . $viewName . '.php')) {
-                $content = $this->_template_path . $viewName . '.php';
+                include $this->_template_path . $viewName . '.php';
             } else {
                 throw new \Exception ("View not found!");
             }
+            $view = ob_get_contents();
+            ob_end_clean();
+
             //Формируем путь до layout
             //Если $layout false то по дефолту 'layout.php'
             $_layout = ($layout) ? $layout : 'layout';
             if (file_exists($this->_template_path . $_layout . '.php')) {
-                $layout = include ($this->_template_path . $_layout .'.php');
+                include ($this->_template_path . $_layout .'.php');
             } else {
                 throw new \Exception ('Layout not found');
             }
-            \App\Core\Application::stop(200);
+            //\App\Core\Application::stop(200);
         } catch (\Exception $e) {
             die($e->getMessage());
         }
