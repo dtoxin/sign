@@ -1,0 +1,155 @@
+
+/*
+    Стиль темы
+*/
+
+body {
+    background: url("/static/img/body-bg.png");
+    /*text-align: center;*/
+}
+
+.content-wrapper {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.content {
+    text-align: center;
+}
+
+.center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+}
+
+.top-bar {
+    padding: 10px;
+    width: 100%;
+    background: #f7f7f7;
+    position: fixed;
+    text-align: left;
+}
+
+/*
+ Формы и их элементы
+*/
+.btn {
+
+    -moz-box-shadow:inset 0px 13px 0px 0px #ffffff;
+    -webkit-box-shadow:inset 0px 13px 0px 0px #ffffff;
+    box-shadow:inset 0px 13px 0px 0px #ffffff;
+
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
+    background:-moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:-webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:-o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:-ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0);
+
+    background-color:#ffffff;
+
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+
+    border:1px solid #dcdcdc;
+
+    display:inline-block;
+    color:#666666;
+    font-family:Arial;
+    font-size:12px;
+    font-weight:bold;
+    padding:8px 8px;
+    text-decoration:none;
+
+    text-shadow:0px 1px 0px #ffffff;
+
+}
+.btn:hover {
+
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
+    background:-moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+    background:-webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+    background:-o-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+    background:-ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+    background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0);
+
+    background-color:#f6f6f6;
+}
+.btn:active {
+    position:relative;
+    top:1px;
+}
+
+
+
+/*Сама форма*/
+.form-container {
+    border: 1px solid #8f877f;
+    background: #f7f7f7;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    -webkit-box-shadow: rgba(000,000,000,0.9) 0 0px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+    -moz-box-shadow: rgba(000,000,000,0.9) 0 0px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+    box-shadow: rgba(000,000,000,0.9) 0 0px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+    font-family: 'Helvetica Neue',Helvetica,sans-serif;
+    text-decoration: none;
+    vertical-align: middle;
+    padding:20px;
+}
+.form-field {
+    border: 1px solid #211e1b;
+    background: #fcfcfc;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    color: #1a1918;
+    -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+    -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+    padding:8px;
+    margin-bottom:20px;
+    width:280px;
+}
+.form-field:focus {
+    background: #fff;
+    color: #546159;
+}
+.form-container h2 {
+    text-shadow: #ededed 0 1px 0;
+    font-size:18px;
+    margin: 0 0 10px 0;
+    font-weight:bold;
+    text-align:center;
+}
+.form-title {
+    margin-bottom:10px;
+    color: #5090c1;
+    text-shadow: #ededed 0 1px 0;
+}
+.submit-container {
+    margin:8px 0;
+    text-align:center;
+}
+
+.form-element {
+    text-align: left;
+}
+.form-element label {
+    display: inline-block;
+    margin-bottom: 5px;
+
+    width: 170px;
+}
+.form-element input {
+
+}
+.login-form {
+    margin-top: 10px;
+}

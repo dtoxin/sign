@@ -3,5 +3,5 @@
 return array(
 
     '/' => 'MainController#home',
-    '/base/foo' => 'BaseController#foo',
+    '/signin' => 'UsersController#signin',
 );

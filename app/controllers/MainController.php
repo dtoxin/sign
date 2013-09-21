@@ -12,7 +12,6 @@ use \App\Models\User as User;
 
 class MainController extends \App\Core\Controller\GenericController
 {
-    //public $layout
 
     public function def()
     {
