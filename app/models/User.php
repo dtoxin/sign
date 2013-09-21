@@ -51,4 +51,9 @@ class User  extends DbModel
     {
         return parent::delete($id);
     }
+
+    public function exists($field, $params)
+    {
+        return parent::exists($field, $params);
+    }
 }

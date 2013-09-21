@@ -118,4 +118,14 @@ class DB {
 
     }
 
+    /**
+     * Если где-то понадобится pdo
+     * @return mixed PDO obj
+     */
+    public function getDB()
+    {
+        $this->_connect();
+        return $this->_db;
+    }
+
 }

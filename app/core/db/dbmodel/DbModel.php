@@ -29,6 +29,21 @@ class DbModel {
         return DB::getInstance()->exec('DELETE FROM ' . $this->_table . ' WHERE id=:id', array(':id' => $id));
     }
 
+    protected function exists($field, $params = array())
+    {
+        $db = DB::getInstance();
+        $_field = $db->getDB()->quote($field);
+        // Странно но после экранирования выборка ничего не возвращает...
+        // Поэтому кавычки после экранирования я заменил на `
+        $_field = str_replace('\'', '`', $_field);
+        $result = $db->sqlQuery('SELECT * FROM ' . $this->_table . ' WHERE ' . $_field . '=:value LIMIT 1', $params);
+        if (!empty($result)) {
+            //Запись есть вернем ёё как экземпляр класса stdClass
+            return $result[0];
+        }
+        return false; // Записи нет
+    }
+
     protected function create($params= array())
     {
         return DB::getInstance()->exec('INSERT INTO ' . $this->_table . $this->_prepareColumnStr() . 'VALUES ' . $this->_prepareColumnStr(true), $params);
@@ -68,5 +83,6 @@ class DbModel {
             return ' (' . $resultStr . ') ';
         }
     }
+
 
 }
