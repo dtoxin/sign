@@ -16,7 +16,7 @@ class Route {
     protected $_request_url;
     protected $_http_host;
     protected $_routes;
-    protected $_params;
+    protected $_params = null;
 
     public function __construct($URL)
     {
@@ -42,20 +42,25 @@ class Route {
         $this->_parse_utl($this->_requestUrl);
     }
 
+    public function make404($msg)
+    {
+        //@todo отобразить через VIEW 404
+    }
+
     protected function _parse_utl($url)
     {
         if ($url == '/') {
-            //navigate
+            if (isset($this->_routes[$url])) {
+                $this->_execRoute($this->_routes[$url]);
+            }
         }
-        $nativeUrl  = '';
-        if (stripos($url, '?')) {
-            $tmpParsed = $this->_parseGet($url);
-            $this->_setRouteParams($tmpParsed['get_params']);
-            $nativeUrl = $tmpParsed['raw_url'];
-        } else {
-            $nativeUrl = $url;
-        }
+        $count_segments = count(explode('/', $url));
+        $nativeUrl = $url;
+        if ($count_segments > 3) {
+            $newUrl = $this->_setRouteParams($url);
+            $nativeUrl = $newUrl['url'];
 
+        }
         if (isset($this->_routes[$nativeUrl])) {
             $this->_execRoute($this->_routes[$nativeUrl]);
         }
@@ -73,21 +78,28 @@ class Route {
         );
     }
 
-    //переход с параметрами
-    protected function _execWithParams($urlCollect)
-    {
 
-    }
-
+    //@todo deprecated
     protected function _setRouteParams($paramStr)
     {
-        $result = array();
-        $allParams = explode('&', $paramStr);
-        foreach ($allParams as $item) {
-            $singleParam = explode('=', $item);
-            array_push($result, $singleParam[1]);
+        $result_url = array('url' => '/');
+        $result_params = array();
+        $allParams = explode('/', $paramStr);
+        $scount = count($allParams);
+        for ($i = 1; $i < $scount; $i++) {
+            if ($i <= 2) {
+                $result_url['url'] = $result_url['url'] . $allParams[$i];
+                if ($i != 2) {
+                    $result_url['url'] = $result_url['url'] . '/';
+                }
+                continue;
+            }
+            array_push($result_params, $allParams[$i]);
         }
-        $this->_params = implode(',', $result);
+
+        $this->_params = $result_params;
+
+        return $result_url;
     }
 
     protected function _execRoute($route)
@@ -97,10 +109,20 @@ class Route {
         $action = $items[1];
 
         $classController = $this->_factoryNamespace($controller);
-        if (method_exists($classController, $action)) {
-            $classController->$action($this->_params);
-        }
 
+        try {
+            if (method_exists($classController, $action)) {
+                $classController->$action($this->_params);
+            } else {
+                if (method_exists($classController, 'def')) {
+                    $classController->def($this->_params);
+                } else {
+                    throw new \Exception ('404 Not found');
+                }
+            }
+        } catch (\Exception $e) {
+            $this->make404($e->getMessage);
+        }
     }
 
     protected function _factoryNamespace($class)
@@ -109,5 +131,6 @@ class Route {
         $class = $controllerNameSpace . $class;
         return new $class();
     }
+
 
 }

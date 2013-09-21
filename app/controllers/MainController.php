@@ -12,8 +12,12 @@ namespace App\Controllers;
 
 class MainController {
 
-    public function home($d)
+    public function def()
     {
-        die($d);
+        die('default');
+    }
+    public function home()
+    {
+        die('home');
     }
 }
