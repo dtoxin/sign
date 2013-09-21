@@ -4,4 +4,4 @@
 <?php $this->_setTitle('Заголовок!');?>
 <h1>hello</h1>
 
-<?php echo Esc::cape($data['user']->name);?>
+<?php echo Esc::cape($data['user']);?>

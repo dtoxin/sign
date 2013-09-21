@@ -48,7 +48,7 @@ class GenericController {
         try{
             ob_start();
             if (file_exists($this->_template_path . $viewName . '.php')) {
-                $content = include($this->_template_path . $viewName . '.php');
+                $content = $this->_template_path . $viewName . '.php';
             } else {
                 throw new \Exception ("View not found!");
             }

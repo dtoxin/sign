@@ -13,19 +13,28 @@ use App\Core\Db\Dbmodel\DbModel as DbModel;
 
 class User  extends DbModel
 {
-    //Таблица
+    //Таблица (не хватает префиксов но в тестовом приложении обойдусь без них)
     protected $_table = 'users';
 
     //Поля (fields)
     protected $_columns = array(
+        // email пользователя он-же логин
         'email'         => 'email',
+        // хэшированный пароль
         'hash'          => 'hash',
+        // имя пользователя
         'name'          => 'name',
+        // фамилия
         'last_name'     => 'last_name',
+        // Отчество
         'mid_name'      => 'mid_name',
+        // Дополнительно поле для произвольной инофрмации (json)
         'addition'      => 'addition',
+        // последний вход
         'last_login'    => 'last_login',
+        // Дата регистрации
         'create_at'     => 'create_at',
+        // Дата бновления профиля
         'updated_at'    => 'updated_at'
     );
 

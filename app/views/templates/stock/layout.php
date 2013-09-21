@@ -10,6 +10,7 @@
     <?php $this->_renderJs(); ?>
 </head>
 <body>
-    <?php echo $content; ?>
+
+    <?php include $content; ?>
 </body>
 </html>

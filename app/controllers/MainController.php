@@ -31,8 +31,8 @@ class MainController extends \App\Core\Controller\GenericController
         //update
         //$user = User::m()->update(array(':name' => 'kosty', ':psw' => '55445', ':id' => 1));
         //$user = User::m()->delete(1);
-        $user = User::m()->exists('name', array(':value' => 'Dima'));
-        $this->_render('main/home', array('user' => $user));
+        //$user = User::m()->exists('name', array(':value' => 'Dima'));
+        $this->_render('main/home', array('user' => 'test'));
     }
 
     public function before()
