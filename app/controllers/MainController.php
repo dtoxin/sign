@@ -8,7 +8,7 @@
  */
 
 namespace App\Controllers;
-
+use \App\Models\User as User;
 
 class MainController extends \App\Core\Controller\GenericController
 {
@@ -20,7 +20,18 @@ class MainController extends \App\Core\Controller\GenericController
     }
     public function home()
     {
-        $this->_render('main/home', array('simple' => '<h1>Today</h1>'));
+        /*$users = User::m()->getAll();
+        foreach($users as $u)
+        {
+            print($u->name);
+        }*/
+        //$user = User::m()->getOne(1);
+        //insert
+        //$user = User::m()->create(array(':name' => 'kosty', ':psw' => '55445'));
+        //update
+        //$user = User::m()->update(array(':name' => 'kosty', ':psw' => '55445', ':id' => 1));
+        $user = User::m()->delete(1);
+        $this->_render('main/home', array('user' => $user));
     }
 
     public function before()

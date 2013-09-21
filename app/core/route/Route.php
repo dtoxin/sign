@@ -123,7 +123,8 @@ class Route {
                 }
             }
         } catch (\Exception $e) {
-            $this->make404($e->getMessage);
+            die($e->getMessage());
+            //$this->make404($e->getMessage());
         }
     }
 
