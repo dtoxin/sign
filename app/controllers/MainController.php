@@ -10,7 +10,9 @@
 namespace App\Controllers;
 
 
-class MainController {
+class MainController extends \App\Core\Controller\GenericController
+{
+    //public $layout
 
     public function def()
     {
@@ -18,6 +20,11 @@ class MainController {
     }
     public function home()
     {
-        die('home');
+        $this->_render('main/home', array('simple' => '<h1>Today</h1>'));
+    }
+
+    public function before()
+    {
+        parent::before();
     }
 }

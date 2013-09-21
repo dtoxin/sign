@@ -112,6 +112,8 @@ class Route {
 
         try {
             if (method_exists($classController, $action)) {
+                //Сначала вызовем _before()
+                if (method_exists($classController, 'before')) { $classController->before();}
                 $classController->$action($this->_params);
             } else {
                 if (method_exists($classController, 'def')) {
