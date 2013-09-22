@@ -17,7 +17,12 @@ function bindEventsRegisterForm() {
 
     //Отправка формы
 
-    //submit-register-form
+    $('#submit-register-form').click(function() {
+        if (validateForm()) {
+            // Валидация на клиентской стороне прошла успешно отправляем
+        }
+    });
+
 }
 
 //Добавление поля
@@ -47,11 +52,120 @@ function addNewInput () {
     $('.inner-form').hide();
 }
 
+/**
+ *
+ * @returns {string} строка содержащие случайное число до 10000
+ */
 function getRandomId()
 {
     Math.round(10000);
     return (Math.random() * (10000 - 10) - 10).toFixed();
 }
 
+
+function validateForm() {
+    // В нормальных условиях я бы использовал плагин JQ.validation
+    // А так изобрету веллосипед
+    // Статус валидации
+    var status = false;
+
+    // Установим все поля
+
+    var email = $('#inp-email');
+    var password = $('#inp-password');
+    var psw_confirm = $('#inp-psw_confirm');
+    var name = $('#inp-name');
+    var last_name = $('#inp-last_name');
+
+    // Проверка обязательных полей
+    // email
+    if (email.val() == '' ||  typeof(email.val()) === 'undefined'){
+        $('#err-email').css({display: 'inline-block'}).text(t('required_field'));
+        email.addClass('field-error');
+        status = false;
+    } else {
+        // Если второй раз вводит
+        email.removeClass('field-error');
+        $('#err-email').hide();
+        status = true;
+    }
+
+    // password
+    if (password.val() == '' ||  typeof(password.val()) === 'undefined'){
+        $('#err-password').css({display: 'inline-block'}).text(t('required_field'));
+        password.addClass('field-error');
+        status = false;
+    } else {
+        password.removeClass('field-error');
+        $('#err-password').hide();
+        status = true;
+    }
+
+    // password confirmation field
+    if (psw_confirm.val() == '' ||  typeof(psw_confirm.val()) === 'undefined'){
+        $('#err-psw_confirm').css({display: 'inline-block'}).text(t('required_field'));
+        psw_confirm.addClass('field-error');
+        status = false;
+    } else {
+        psw_confirm.removeClass('field-error');
+        $('#err-psw_confirm').hide();
+        status = true;
+    }
+
+    // name
+    if (name.val() == '' ||  typeof(name.val()) === 'undefined'){
+        $('#err-name').css({display: 'inline-block'}).text(t('required_field'));
+        name.addClass('field-error');
+        status = false;
+    } else {
+        name.removeClass('field-error');
+        $('#err-name').hide();
+        status = true;
+    }
+
+    // last name
+    if (last_name.val() == '' ||  typeof(last_name.val()) === 'undefined'){
+        $('#err-last_name').css({display: 'inline-block'}).text(t('required_field'));
+        last_name.addClass('field-error');
+        status = false;
+    } else {
+        last_name.removeClass('field-error');
+        $('#err-last_name').hide();
+        status = true;
+    }
+
+    if (status != true) {
+        return status;
+    }
+
+    // Прочие ошибки
+
+    // valid email
+    var reExp = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/igm;
+    if (email.val() == '' || !reExp.test(email.val()))
+    {
+        $('#err-email').css({display: 'inline-block'}).text(t('invalid_email'));
+        email.addClass('field-error');
+        status = false;
+    } else {
+        email.removeClass('field-error');
+        $('#err-email').hide();
+        status = true;
+    }
+
+    // password to be confirm
+    console.log('psw=' + password.val() + '  ' + 'pswconf='+psw_confirm.val());
+    if (psw_confirm.val() != password.val()) {
+        $('#err-psw_confirm').css({display: 'inline-block'}).text(t('not_eq'));
+        psw_confirm.addClass('field-error');
+        status = false;
+    } else {
+        psw_confirm.removeClass('field-error');
+        $('#err-psw_confirm').hide();
+        status = true;
+    }
+
+    return status;
+}
 // экспортируем
 globalFunc['bindEventsRegisterForm'] = bindEventsRegisterForm;

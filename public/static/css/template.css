@@ -32,6 +32,7 @@ body {
     background: #38ABE0;
     position: fixed;
     text-align: left;
+    z-index: 10; /* Чтобы случаем не перекрыть тени у inp error*/
 }
 
 /*

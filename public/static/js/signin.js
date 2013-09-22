@@ -32,7 +32,7 @@ function bindEventsLoginForm() {
         //Заполнение пароля
         if (password.val() == '' ||  typeof(password.val()) === 'undefined'){
             $('#err-password').css({display: 'inline-block'}).text(t('required_field'));
-            email.addClass('field-error');
+            password.addClass('field-error');
             return 0;
         } else {
             password.removeClass('field-error');

@@ -9,6 +9,7 @@ return array(
     'Enter' => 'Войти',
     'Page nor found' => 'Страница не найдена',
     'Name' => 'Имя',
+    'Language' => 'Язык',
     'Field name' => 'Название поля',
     'e.g phone' => 'пример. телефон',
     'Field value' => 'Значение',
