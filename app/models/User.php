@@ -28,6 +28,8 @@ class User  extends DbModel
         'last_name'     => 'last_name',
         // Отчество
         'mid_name'      => 'mid_name',
+        // путь до изображения
+        'img_path' => 'img_path',
         // Дополнительно поле для произвольной инофрмации (json)
         'addition'      => 'addition',
         // последний вход
@@ -37,6 +39,39 @@ class User  extends DbModel
         // Дата бновления профиля
         'updated_at'    => 'updated_at'
     );
+
+    /**
+     * @param $postData данные из _POST
+     * @return bool|array true если валидация прошла успешно | array с ошибками
+     */
+    public function validate($postData)
+    {
+        // email обязателен
+        $this->_validate('required', $postData['email'], 'E-mail', 'Not given');
+        // корректный e-mail
+        $this->_validate('email', $postData['email'], 'E-mail', 'E-mail is not valid');
+
+        // пароль обязателен
+        $this->_validate('required', $postData['password'], 'Password', 'Not given');
+
+        // подтверждение пароля обязательно
+        $this->_validate('required', $postData['psw_confirm'], 'Confirm password', 'Not given');
+
+        // пароли должны быть равны
+        $this->_validate('confirmation', $postData['psw_confirm'], 'Confirm password', 'Password mismatch', array('forConfirm' => $postData['password']));
+
+        // имя обязательно
+        $this->_validate('required', $postData['name'], 'Name', 'Not given');
+
+        // Фамилия обязательна
+        $this->_validate('required', $postData['last_name'], 'Last name', 'Not given');
+
+        if (count($this->getValidationErrors()) != 0) {
+            return $this->getValidationErrors();
+        }
+
+        return true;
+    }
 
     public static function m($class =__CLASS__)
     {

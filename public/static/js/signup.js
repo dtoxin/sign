@@ -18,8 +18,10 @@ function bindEventsRegisterForm() {
     //Отправка формы
 
     $('#submit-register-form').click(function() {
+        // @todo инвентированно для отладки
         if (validateForm()) {
             // Валидация на клиентской стороне прошла успешно отправляем
+            $('#frm-signup').submit();
         }
     });
 
@@ -46,7 +48,7 @@ function addNewInput () {
     var adFieldsContainer = $('#additions-fields');
     adFieldsContainer.append('<div class="form-element" id="din-field-' + rndVal + '"></div>');
     $('#din-field-' + rndVal).append('<label for="' + fieldName.val()+ '">'+fieldName.val()+':</label>');
-    $('#din-field-' + rndVal).append('<input class="form-field din-field" type="text" name="last_name" style="margin-left:4px;" x-data-label="'+ fieldName.val() +'"/>');
+    $('#din-field-' + rndVal).append('<input class="form-field din-field" type="text" name="addition[din-'+ rndVal +']" style="margin-left:4px;" x-data-label="'+ fieldName.val() +'"/>');
     $('#din-field-' + rndVal).append('<span class="ctrl-lnk" style="margin-left: 5px;"><a href="#" onclick="return false;" class="lnk-din-field-del" x-data-parent="din-field-'+ rndVal +'">' +t("del")+ '</a></span>');
     $('#field-name').val('');
     $('.inner-form').hide();
@@ -154,7 +156,6 @@ function validateForm() {
     }
 
     // password to be confirm
-    console.log('psw=' + password.val() + '  ' + 'pswconf='+psw_confirm.val());
     if (psw_confirm.val() != password.val()) {
         $('#err-psw_confirm').css({display: 'inline-block'}).text(t('not_eq'));
         psw_confirm.addClass('field-error');

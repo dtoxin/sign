@@ -6,6 +6,7 @@ class DbModel {
 
     protected $_table;
     protected $_columns = array();
+    protected $_validationErrors = array();
 
     protected function getAll()
     {
@@ -81,6 +82,34 @@ class DbModel {
         } else {
             $resultStr = implode(' ,', $this->_columns);
             return ' (' . $resultStr . ') ';
+        }
+    }
+
+    /**
+     * Возвращает массив ошибок валидации
+     * @return array массив с ошибками
+     */
+    public function getValidationErrors()
+    {
+        return $this->_validationErrors;
+    }
+
+    protected function _validate($validator, $strForValidation, $fieldName, $errorMessage, $params = array())
+    {
+        if (method_exists('Validator', $validator)) {
+            $result = \Validator::$validator($strForValidation, $params);
+            if ($result) {
+                return true;
+            } else {
+                if (isset($this->_validationErrors[$fieldName])){
+                    array_push($this->_validationErrors[$fieldName], $errorMessage);
+                } else {
+                    $this->_validationErrors[$fieldName] = array($errorMessage);
+                }
+            }
+            return true;
+        } else {
+            throw new \Exception ('Validator not found');
         }
     }
 
