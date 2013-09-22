@@ -63,10 +63,19 @@ class GenericController {
             } else {
                 throw new \Exception ('Layout not found');
             }
-            //\App\Core\Application::stop(200);
         } catch (\Exception $e) {
             die($e->getMessage());
         }
+    }
+
+    /**
+     * Ajax ответ
+     * @param array $data массив данных для json_encode
+     */
+    protected function _renderJson($data = array())
+    {
+        echo json_encode($data);
+        \App\Core\Application::stopAjax(200);
     }
 
     /**
@@ -114,5 +123,11 @@ class GenericController {
     protected function _setTitle($title)
     {
         $this->_title = $title;
+    }
+
+    public function make404($data = array())
+    {
+        $this->_render('404', $data);
+        \App\Core\Application::stop(404);
     }
 }

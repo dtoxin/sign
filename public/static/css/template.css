@@ -4,8 +4,9 @@
 */
 
 body {
-    background: url("/static/img/body-bg.png");
+    background: url("/static/img/body-bg.png") fixed;
     /*text-align: center;*/
+    font-family: 'Verdana', serif !important;
 }
 
 .content-wrapper {
@@ -28,7 +29,7 @@ body {
 .top-bar {
     padding: 10px;
     width: 100%;
-    background: #f7f7f7;
+    background: #38ABE0;
     position: fixed;
     text-align: left;
 }
@@ -144,12 +145,119 @@ body {
 .form-element label {
     display: inline-block;
     margin-bottom: 5px;
-
+    font-size: 12px;
     width: 170px;
 }
-.form-element input {
 
-}
 .login-form {
     margin-top: 10px;
+}
+.form-req-field {
+    color: #CA2A0C;
+    display: inline;
+    font-size: 12pt;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.field-error {
+    border: 1px solid #CA2A0C !important;
+}
+
+.form-help {
+    font-size: 12px;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.input-error {
+    margin-left: 5px;
+    display: none;
+    color: #CA2A0C;
+    font-size: 10px;
+    position: relative;
+    vertical-align: middle;
+}
+
+
+.shadow-s1 {
+    position:relative;
+    width:40%;
+    padding:1em;
+    background:#fff;
+    border-radius:4px;
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-border-radius:4px;
+
+}
+
+.shadow-s1:before,
+.shadow-s1:after {
+    content:"";
+    position:absolute;
+    z-index:-2;
+    bottom:15px;
+    left:10px;
+    width:50%;
+    height:20%;
+    max-width:300px;
+    -webkit-box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);
+    box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);
+    -webkit-transform:rotate(-3deg);
+    -moz-transform:rotate(-3deg);
+    -ms-transform:rotate(-3deg);
+    -o-transform:rotate(-3deg);
+    transform:rotate(-3deg);
+}
+
+.shadow-s1:after {
+    right:10px;
+    left:auto;
+    -webkit-transform:rotate(3deg);
+    -moz-transform:rotate(3deg);
+    -ms-transform:rotate(3deg);
+    -o-transform:rotate(3deg);
+    transform:rotate(3deg);
+}
+
+.inner-form {
+    height: 20px;
+    text-align: left;
+    vertical-align: middle;
+    padding: 15px;
+    position: relative;
+    background: #A6A6A6;
+    display: none;
+
+}
+
+.inner-form .element {
+    display: inline;
+}
+
+.inner-form label {
+    font-size: 12px;
+}
+
+.inner-form label small {
+    font-size: 10px;
+    font-style: italic;
+}
+
+.inner-form input[type=text] {
+    border: none;
+    height: 20px;
+}
+
+.ctrl-lnk a {
+    font-size: 12px;
+    color: #346CEF;
+    text-decoration: none;
+}
+.ctrl-lnk a:hover {
+    color: #164DCA;
 }

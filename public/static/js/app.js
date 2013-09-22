@@ -3,12 +3,12 @@
  * @type {{}}
  */
 var globalFunc = {};
-
 $(document).ready(function() {
     bindingEvents();
 });
 
 function bindingEvents() {
+    registerGlobalEvents();
     $('#select-lng').on('change', function() {
         changeLocale($(this).val());
     });
@@ -71,4 +71,28 @@ function setCookie(name, value, options) {
     }
     document.cookie = updatedCookie;
 }
+
+/**
+ * Биндинг из других функций
+ */
+function registerGlobalEvents() {
+    for (func in globalFunc) {
+        if (typeof(globalFunc[func]) == 'function') {
+            globalFunc[func]();
+        }
+    }
+}
+
+/**
+ * Интернациализация динамического фронтенда
+ */
+function t(msg_id) {
+    var cLoc = getCookie('locale');
+    if (typeof(cLoc) === 'undefined') {
+        cLoc = 'en';
+    }
+    return dictionary[msg_id][cLoc];
+}
+
+
 

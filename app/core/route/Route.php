@@ -42,9 +42,13 @@ class Route {
         $this->_parse_utl($this->_requestUrl);
     }
 
-    public function make404($msg)
+    public function send404($msg)
     {
         //@todo отобразить через VIEW 404
+        $genController = new \App\Core\Controller\GenericController();
+        $genController->make404(array(
+            'msg' => $msg,
+        ));
     }
 
     protected function _parse_utl($url)
@@ -63,10 +67,18 @@ class Route {
         }
         if (isset($this->_routes[$nativeUrl])) {
             $this->_execRoute($this->_routes[$nativeUrl]);
+        } else {
+            $this->send404('Page not found');
         }
     }
 
-    protected function _parseGet($str)
+    /**
+     * Не нужна но оставлю на будущее
+     * @deprecated
+     * @param $str
+     * @return array
+     */
+   /* protected function _parseGet($str)
     {
         $data = explode('?', $str);
         if (count($data) > 2) {
@@ -76,7 +88,7 @@ class Route {
             'raw_url' => $data[0],
             'get_params' => $data[1],
         );
-    }
+    }*/
 
 
     //@todo deprecated
@@ -124,7 +136,7 @@ class Route {
             }
         } catch (\Exception $e) {
             die($e->getMessage());
-            //$this->make404($e->getMessage());
+
         }
     }
 

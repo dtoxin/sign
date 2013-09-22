@@ -16,4 +16,18 @@ class UsersController extends \App\Core\Controller\GenericController
     {
         $this->_render('users/signin');
     }
+
+    public function signup()
+    {
+        $this->_render('users/signup');
+    }
+
+    public function jxSignin()
+    {
+        $stat = array(
+            'stat' => 1,
+            'messages' => 'none',
+        );
+        $this->_renderJson($stat);
+    }
 }

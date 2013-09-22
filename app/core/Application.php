@@ -17,7 +17,11 @@ class Application {
     {
         header('Content-type: text/html');
         http_response_code ($status);
-        ob_end_flush();
-        die();
+    }
+
+    public  function stopAjax($status)
+    {
+        header('Content-type: application/json');
+        http_response_code ($status);
     }
 }
