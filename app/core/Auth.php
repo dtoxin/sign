@@ -3,8 +3,14 @@
 namespace App\Core;
 
 use \App\Models\User as User;
-class Auth {
 
+/**
+ * Class Auth
+ * Простой класс авторизации и аунтификации
+ * @author dtoxin <dtoxin10@gmail.com>
+ * @package App\Core
+ */
+class Auth {
     protected static $_instance;
 
     private function __construct() {}
@@ -32,6 +38,12 @@ class Auth {
         return sha1($password);
     }
 
+    /**
+     * Авторизация
+     * @param $email
+     * @param $password
+     * @return bool true если успешно
+     */
     public function authenticate($email, $password)
     {
         // Что бы лишний раз базу не дёргать сверим заполнение полей
@@ -46,10 +58,15 @@ class Auth {
         // Сохранить время последнего логина
         User::m()->execSql('UPDATE ' . User::m()->getTable() . ' SET last_login = "' . date('Y-m-d H:i:s') . '" WHERE id=' . $user->id);
 
+        // сохраним в сессию
         Auth::getInstance()->saveCredentials($user);
         return true;
     }
 
+    /**
+     * Сохранение данных входа
+     * @param \stdClass $user
+     */
     public function saveCredentials(\stdClass $user)
     {
         session_start();
@@ -57,12 +74,17 @@ class Auth {
         $_SESSION['name'] = $user->name;
     }
 
+    // выход
     public function logout(){
         session_start();
         unset($_SESSION['id']);
         unset($_SESSION['name']);
     }
 
+    /**
+     * Прверка текущего пользователя на авторизованность
+     * @return bool
+     */
     public function isAuthenticated()
     {
         if (session_status() == PHP_SESSION_NONE) {

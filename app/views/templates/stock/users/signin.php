@@ -9,7 +9,7 @@
         <div class="form-all-errors unvisible"><span id='sp-login-status'></span></div>
         <div class="form-title"><h2><?= L::t('Sign in'); ?></h2></div>
         <div class="form-help">
-            <?= L::t('Please enter your credentials that you used when registering');?>
+            <?= L::t('Please enter your credentials that you used when registering.');?>
         </div>
         <div class="form-element">
             <label for="email"><?= L::t('E-mail'); ?><span class="form-req-field">*</span> :</label>

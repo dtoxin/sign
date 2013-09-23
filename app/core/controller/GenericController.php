@@ -3,7 +3,11 @@
 
 namespace App\Core\Controller;
 
-
+/**
+ * Class GenericController
+ * Родительский контроллер
+ * @package App\Core\Controller
+ */
 class GenericController {
 
     //Базовый layout в который можно вложить view
@@ -127,6 +131,10 @@ class GenericController {
         $this->_title = $title;
     }
 
+    /**
+     * 404
+     * @param array $data
+     */
     public function make404($data = array())
     {
         $this->_render('404', $data);

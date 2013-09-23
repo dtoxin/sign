@@ -1,7 +1,17 @@
 <?php
 
+/**
+ * Самый полезный файл приложения
+ * Конечно можно было composer прикрутить но я и так слишком сильно заморочился
+ * Автозагрузчик классов
+ * Class Autoloader
+ */
 class Autoloader
 {
+    /**
+     * Загрузка через ns
+     * @param $className класс
+     */
     public static function loadClass($className)
     {
         $className = ltrim($className, '\\');
@@ -22,6 +32,11 @@ class Autoloader
     }
 
 
+    /**
+     * Превращает /App/Controllers/HomeController.php в /app/controllers/HomeController.php
+     * @param $path путь
+     * @return mixed результат
+     */
     public static function normalizePath($path)
     {
         $expPath = explode("/", $path);
@@ -31,6 +46,10 @@ class Autoloader
         return $result;
     }
 
+    /**
+     * Загрузка хэлперов
+     * @param $className
+     */
     public static function helpersLoadClass($className)
     {
         require_once realpath(__DIR__ . '/../helpers' . DIRECTORY_SEPARATOR . $className . '.php' );

@@ -381,27 +381,6 @@ li.li-error {
     box-shadow: 0px 0px 20px #000000;
 }
 
-/*.user-data {
-    margin-left: 310px;
-}
-.sec-1 {
-    width: 310px;
-    position: relative;
-    top: 10px;
-    left: 10px;
-}
-.sec-2 {
-    position: relative;
-    top: 10px;
-    left: 10px;
-    width:  500px;
-    margin-left: 50px;
-    padding: 30px;
-    border-left: 2px solid #CA2A0C;
-}
-.section-inline {
-    display: inline;
-}*/
 
 span.field {
     font-size: 14px;
@@ -417,4 +396,17 @@ span.field {
 
 .user-info td {
     vertical-align: middle;
+}
+
+.main-page-container {
+    padding: 20px;
+    text-align: center;
+    min-height: 200px;
+
+}
+
+h1.welcome {
+    color: #fff;
+    font-size: 32px;
+    font-weight: bold;
 }

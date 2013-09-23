@@ -19,4 +19,4 @@ spl_autoload_register('Autoloader::helpersLoadClass');
 $a->home();
 die();*/
 // Запускаем этот дъявольский веллосипед x)
-\App\Core\Application::start($path);
+\App\Core\Application::start();

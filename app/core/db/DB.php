@@ -3,10 +3,15 @@
 namespace App\Core\Db;
 
 
-use ___PHPSTORM_HELPERS\object;
-
+/**
+ *
+ * Class DB
+ * Класс (singleton patter) Для работы с DB
+ * @author dtoxin <dtoxin10@gmailcom>
+ * @package App\Core\Db
+ */
 class DB {
-
+    // Класс комментов не требует ибо довольно прост
     protected static $_instance;
 
     protected $_dsn; //строка подключения к базе
@@ -117,6 +122,12 @@ class DB {
 
     }
 
+    /**
+     * Выполнение RAW запроса
+     * НЕ ЗАБЫТЬ ВРУЧНУЮ ПОДГОТОВИТЬ ЗАПРОС + ЭКРАНИРОВАНИЕ
+     * @param $sql
+     * @return mixed
+     */
     public function rawSql($sql)
     {
         $this->_connect();

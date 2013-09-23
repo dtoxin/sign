@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Конфигурация БД (development environment)
+ * Конфигурация БД (production environment)
  */
 return array(
     'dsn' => 'mysql:host=#hostname;dbname=#database',
