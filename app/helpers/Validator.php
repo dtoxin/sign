@@ -53,6 +53,12 @@ class Validator {
         return false;
     }
 
+    /**
+     * Валидация на уникальность в БД
+     * @param $str
+     * @param array $params
+     * @return bool
+     */
     public static function unique($str, $params = array())
     {
         // Проверим пользователя на уникальность
@@ -65,4 +71,5 @@ class Validator {
 
         return false;
     }
+
 }

@@ -36,8 +36,6 @@ class User  extends DbModel
         'last_login'    => 'last_login',
         // Дата регистрации
         'created_at'     => 'created_at',
-        // Дата бновления профиля
-        'updated_at'    => 'updated_at'
     );
 
     /**

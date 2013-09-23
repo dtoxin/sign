@@ -16,9 +16,7 @@ function bindEventsRegisterForm() {
     }); // вместо $.live(...)
 
     //Отправка формы
-
     $('#submit-register-form').click(function() {
-        // @todo инвентированно для отладки
         if (validateForm()) {
             // Соберём дополнительную информацию
             var allInput = $('input[type="text"].din-field');
@@ -35,6 +33,7 @@ function bindEventsRegisterForm() {
     });
 
 }
+
 
 //Добавление поля
 function addFieldToForm() {
@@ -173,6 +172,27 @@ function validateForm() {
         psw_confirm.removeClass('field-error');
         $('#err-psw_confirm').hide();
         status = true;
+    }
+
+    // запрещенные символы name
+    if (/^[0-9a-zA-Z-а-яА-Я]+$/.test(name.val())) {
+        name.removeClass('field-error');
+        $('#err-name').hide();
+        status = true;
+    } else {
+        $('#err-name').css({display: 'inline-block'}).text(t('err_symp'));
+        name.addClass('field-error');
+        status = false;
+    }
+
+    if (/^[0-9a-zA-Z-а-яА-Я]+$/.test(last_name.val())) {
+        last_name.removeClass('field-error');
+        $('#err-last_name').hide();
+        status = true;
+    } else {
+        $('#err-last_name').css({display: 'inline-block'}).text(t('err_symp'));
+        last_name.addClass('field-error');
+        status = false;
     }
 
     return status;

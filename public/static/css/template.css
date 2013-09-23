@@ -346,6 +346,7 @@ li.li-error {
 
 .user-bar {
     display: inline;
+
 }
 
 .user-bar a, .user-bar a:visited {
@@ -409,4 +410,9 @@ h1.welcome {
     color: #fff;
     font-size: 32px;
     font-weight: bold;
+}
+
+.sp-user-name {
+    width: 67px; overflow: hidden;
+    display: inline-block;
 }

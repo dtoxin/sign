@@ -27,7 +27,7 @@
                 <div class="user-bar">
                     <div class="signed">
                         <span style='color: #000 !important; font-weight: normal !important;'><?= L::t('Signed in'); ?>:</span>
-                        <?= Esc::cape(Usr::getLoginAss());?>
+                        <span class="sp-user-name"><?= Esc::cape(Usr::getLoginAss());?></span>
                         <a href="/signout"><?= L::t('Sign out'); ?></a>
                     </div>
                 </div>

@@ -56,7 +56,6 @@ class UsersController extends \App\Core\Controller\GenericController
                     ':addition' => $_POST['information']['data'],
                     'last_login' => '',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => ''
                 ));
                 \App\Core\Application::redirect('/signin');
             } else {
