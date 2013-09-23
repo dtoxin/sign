@@ -46,7 +46,11 @@ function bindEventsLoginForm() {
             url: '/users/jxSignin',
             success: function (data) {
                 if (data.stat == 1) {
-                    alert('we are sign!');
+                    $('.unvisible').hide();
+                    window.location.href = data.url;
+                } else {
+                    $('#sp-login-status').text(data.message);
+                    $('.unvisible').show();
                 }
             }
         });

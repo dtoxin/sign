@@ -17,6 +17,7 @@ class Application {
     {
         header('Content-type: text/html');
         http_response_code ($status);
+
     }
 
     public static function stopAjax($status)

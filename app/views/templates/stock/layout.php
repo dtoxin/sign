@@ -23,6 +23,20 @@
                 <option value="en">en</option>
                 <option value="ru">ru</option>
             </select>
+            <?php if (Usr::hasCredentials()): ?>
+                <div class="user-bar">
+                    <div class="signed">
+                        <span style='color: #000 !important; font-weight: normal !important;'><?= L::t('Signed in'); ?>:</span>
+                        <?= Esc::cape(Usr::getLoginAss());?>
+                        <a href="/signout"><?= L::t('Sign out'); ?></a>
+                    </div>
+                </div>
+            <?php endif; ?>
+                <nav>
+                    <a href="/"><?= L::t('Home');?></a>
+                    <a href="/signup"><?= L::t('Register new user');?></a>
+                    <a href="/users/profile"><?= L::t('User profile');?></a>
+                </nav>
         </div>
     </div> <br><br><br>
     <div class="content-wrapper">

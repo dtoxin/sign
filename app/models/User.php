@@ -134,4 +134,23 @@ class User  extends DbModel
         }
         return '.jpg';
     }
+
+    public function authenticate($email, $hash)
+    {
+        return $this->getObject('SELECT * FROM ' . $this->_table . ' WHERE email=:email AND hash=:hash', array(
+            ':email' => $email,
+            ':hash' => $hash
+        ));
+    }
+
+    public function execSql($sql)
+    {
+
+        return $this->rawSqlQuery($sql);
+    }
+
+    public function getTable()
+    {
+        return $this->_table;
+    }
 }

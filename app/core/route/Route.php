@@ -38,7 +38,6 @@ class Route {
 
     public function pass()
     {
-        //Дополнительные действия например фильтры
         $this->_parse_utl($this->_requestUrl);
     }
 
@@ -67,7 +66,7 @@ class Route {
         }
         // Если заканчивается на / - убрать /
         $strLen = strlen($nativeUrl);
-        if ($nativeUrl[$strLen-1] == '/') {
+        if ($nativeUrl[$strLen-1] == '/' && $strLen != 1) {
             $nativeUrl = substr($nativeUrl, 0, -1);
         }
         // Ищем в маршрутах

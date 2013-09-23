@@ -13,10 +13,10 @@ use \App\Models\User as User;
 class MainController extends \App\Core\Controller\GenericController
 {
 
-    public function def()
+   /* public function def()
     {
         die('default');
-    }
+    }*/
     public function home()
     {
         /*$users = User::m()->getAll();
@@ -34,8 +34,8 @@ class MainController extends \App\Core\Controller\GenericController
         $this->_render('main/home', array('user' => 'test'));
     }
 
-    public function before()
+    /*public function before()
     {
         parent::before();
-    }
+    }*/
 }

@@ -1,6 +1,7 @@
 <?php
 //регистрация скриптов view
 $this->_addJs('/static/js/signup.js');
+$this->_setTitle(L::t('Sign up'));
 ?>
 
 <div class="register-form">

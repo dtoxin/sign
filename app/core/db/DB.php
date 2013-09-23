@@ -63,7 +63,7 @@ class DB {
     {
         try {
             $this->_db = new \PDO($this->_dsn, $this->_db_user, $this->_db_psw, array(
-                \PDO::ATTR_PERSISTENT => true
+                \PDO::ATTR_PERSISTENT => false
             ));
         } catch (\PDOException $e) {
             die($e->getMessage());
@@ -91,7 +91,7 @@ class DB {
     }
 
     /**
-     * @param $sql запос
+     * @param $sql запрос
      * @param array $params параметры
      * @return mixed 1 объект stdClass
      */
@@ -110,10 +110,20 @@ class DB {
         $this->_db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         try{
             $result = $this->_db->prepare($sql);
-            /*var_dump($result); die();*/
             return $status = $result->execute($params);
         } catch (\PDOException $e) {
             die($e->getMessage());
+        }
+
+    }
+
+    public function rawSql($sql)
+    {
+        $this->_connect();
+        try {
+            return $this->_db->exec($sql);
+        } catch (\PDOException $e) {
+            die ($e->getMessage());
         }
 
     }

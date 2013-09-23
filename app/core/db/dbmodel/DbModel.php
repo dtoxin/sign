@@ -50,6 +50,11 @@ class DbModel {
         return DB::getInstance()->exec('INSERT INTO ' . $this->_table . $this->_prepareColumnStr() . 'VALUES ' . $this->_prepareColumnStr(true), $params);
     }
 
+    protected function getObject($sql, $params = array())
+    {
+        return DB::getInstance()->getObject($sql, $params);
+    }
+
     /**
      * Подготовка строки содержащей столбцы таблицы
      * @param bool $asParam есили true то сделать строку вида (:field1, :field2) иначе (field1, field2)
@@ -92,6 +97,11 @@ class DbModel {
     public function getValidationErrors()
     {
         return $this->_validationErrors;
+    }
+
+    protected function rawSqlQuery($sql)
+    {
+        return DB::getInstance()->rawSql($sql);
     }
 
 

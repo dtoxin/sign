@@ -5,6 +5,7 @@ return array(
     '/' => 'MainController#home',
     '/signin' => 'UsersController#signin',
     '/signup' => 'UsersController#signup',
-    '/users/postSignup' => 'UsersController#postSignup',
+    '/signout' => 'UsersController#signout',
+    '/users/profile' => 'UsersController#profile',
     '/users/jxSignin' => 'UsersController#jxSignin',
 );

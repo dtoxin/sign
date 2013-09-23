@@ -17,6 +17,9 @@ class UsersController extends \App\Core\Controller\GenericController
 {
     public function signin()
     {
+        if (\Usr::hasCredentials()) {
+            Application::redirect('/users/profile');
+        }
         $this->_render('users/signin');
     }
 
@@ -82,19 +85,39 @@ class UsersController extends \App\Core\Controller\GenericController
      */
     public function jxSignin()
     {
-        $stat = array(
-            'stat' => 1,
-            'messages' => 'none',
-        );
+        $stat = array();
+        if (Auth::getInstance()->authenticate($_POST['email'], $_POST['psw'])) {
+            $stat = array(
+                'stat' => 1, // прошли
+                'message' => '',
+                'url' => '/users/profile'
+            );
+        } else {
+            $stat = array(
+                'stat' => 0, // прошли
+                'message' => \L::t('Wrong password or e-mail'),
+            );
+        }
+
         $this->_renderJson($stat);
     }
 
-    /**
-     * Регистрация
-     */
-    public function postSignup()
+    public function signout()
     {
+        Auth::getInstance()->logout();
+        \App\Core\Application::redirect('/');
+    }
 
+
+    public function profile()
+    {
+        $this->_accessControl();
+        // get user info
+        $id = $_SESSION['id'];
+        $user = User::m()->getOne($id);
+        $this->_render('users/profile', array(
+            'user' => $user,
+        ));
     }
 
     private function _loadAndValidImage ($validationParams = array())
@@ -142,5 +165,12 @@ class UsersController extends \App\Core\Controller\GenericController
             return $consts[$statCode];
         }
         return false;
+    }
+
+    private function _accessControl()
+    {
+        if(!Auth::getInstance()->isAuthenticated()) {
+            \App\Core\Application::redirect('/signin');
+        }
     }
 }

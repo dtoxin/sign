@@ -54,6 +54,8 @@ class GenericController {
             }
             $view = ob_get_contents();
             ob_end_clean();
+            // Без этой команды бывают сбои при выводе
+            ob_clean();
 
             //Формируем путь до layout
             //Если $layout false то по дефолту 'layout.php'
