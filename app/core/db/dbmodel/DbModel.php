@@ -94,6 +94,7 @@ class DbModel {
         return $this->_validationErrors;
     }
 
+
     protected function _validate($validator, $strForValidation, $fieldName, $errorMessage, $params = array())
     {
         if (method_exists('Validator', $validator)) {

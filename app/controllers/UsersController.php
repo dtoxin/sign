@@ -9,6 +9,8 @@
 
 namespace App\Controllers;
 
+use App\Core\Application;
+use App\Core\Auth;
 use \App\Models\User as User;
 
 class UsersController extends \App\Core\Controller\GenericController
@@ -31,9 +33,29 @@ class UsersController extends \App\Core\Controller\GenericController
                 ),
             ));
             if ($validateErrorsFields === true && $validateErrorsFiles === true){
+                // Сохраним изображение
+                if (!empty($_FILES['User']['name']['avatar'])) {
+                    $unicFile = rand(100, 100000) . uniqid('', true) . User::m()->getImageFileExt($_FILES['User']['type']['avatar']);
+                    $fullUploadFilePath = \Config::get('path', 'UPLOAD_PATH', '', true) . DIRECTORY_SEPARATOR . $unicFile;
+                    $cpStat = move_uploaded_file($_FILES['User']['tmp_name']['avatar'], $fullUploadFilePath);
+                }
                 //Сохраняем пользователя в DB
-                
-                die('all ok');
+                $modelUser = new User();
+                $modelUser->prepareValuesFromPost();
+
+                $saveStatus = User::m()->create(array(
+                    ':email' => $_POST['User']['email'],
+                    ':hash' => Auth::getInstance()->hashPassword($_POST['User']['password']),
+                    ':name' => $_POST['User']['name'],
+                    ':last_name' => $_POST['User']['last_name'],
+                    ':mid_name' => $_POST['User']['mid_name'],
+                    ':img_path' => '/static/upload/' . $unicFile,
+                    ':addition' => $_POST['information']['data'],
+                    'last_login' => '',
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => ''
+                ));
+                \App\Core\Application::redirect('/signin');
             } else {
                 // отдаём пользователю ошибки
                 // Если с пришло два массива с ошибками то совместим их
@@ -77,6 +99,7 @@ class UsersController extends \App\Core\Controller\GenericController
 
     private function _loadAndValidImage ($validationParams = array())
     {
+        if (empty($_FILES['User']['name']['avatar'])) { return true; } // нечего загружать
         $fileErrors = array('Image' => array());
         // Проверим статус загрузки, если отличается от 0 то выясним ошибку
         if ($_FILES['User']['error']['avatar'] != UPLOAD_ERR_OK) {

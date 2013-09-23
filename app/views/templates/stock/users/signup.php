@@ -76,6 +76,7 @@ $this->_addJs('/static/js/signup.js');
         </div>
 
         <!--addition fields-->
+        <input type="hidden" value='' name='information[data]' id='inp-fullAdInfo'/>
         <div id='additions-fields'></div>
         <!--end addition fields-->
 

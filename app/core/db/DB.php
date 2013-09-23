@@ -106,11 +106,11 @@ class DB {
 
     public function exec($sql, $params = array())
     {
-        //var_dump($params); die();
         $this->_connect();
         $this->_db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         try{
             $result = $this->_db->prepare($sql);
+            /*var_dump($result); die();*/
             return $status = $result->execute($params);
         } catch (\PDOException $e) {
             die($e->getMessage());

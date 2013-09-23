@@ -52,4 +52,17 @@ class Validator {
         }
         return false;
     }
+
+    public static function unique($str, $params = array())
+    {
+        // Проверим пользователя на уникальность
+
+        $status = \App\Models\User::m()->exists($params['field'], array(':value' => $str));
+        // Если false (записи нет = уникальный) то валидатор пройден
+        if (!$status) {
+            return true;
+        }
+
+        return false;
+    }
 }

@@ -9,7 +9,7 @@
         <?= L::t('Please enter your credentials that you used when registering');?>
     </div>
     <div class="form-element">
-        <label for="email"><?= L::t('Email'); ?><span class="form-req-field">*</span> :</label>
+        <label for="email"><?= L::t('E-mail'); ?><span class="form-req-field">*</span> :</label>
         <input class="form-field" type="email" name="email" id='inp-email'/>
         <div class="input-error shadow-s1" id="err-email"></div>
     </div>

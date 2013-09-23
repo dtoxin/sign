@@ -20,6 +20,15 @@ function bindEventsRegisterForm() {
     $('#submit-register-form').click(function() {
         // @todo инвентированно для отладки
         if (validateForm()) {
+            // Соберём дополнительную информацию
+            var allInput = $('input[type="text"].din-field');
+            var additionData = {};
+            for (var i = 0; i<= allInput.length-1; i++) {
+                additionData[$(allInput[i]).attr('x-data-label')] = $(allInput[i]).val();
+            }
+            // json закидываем в один input
+            $('#inp-fullAdInfo').val(JSON.stringify(additionData));
+
             // Валидация на клиентской стороне прошла успешно отправляем
             $('#frm-signup').submit();
         }

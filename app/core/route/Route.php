@@ -65,6 +65,12 @@ class Route {
             $nativeUrl = $newUrl['url'];
 
         }
+        // Если заканчивается на / - убрать /
+        $strLen = strlen($nativeUrl);
+        if ($nativeUrl[$strLen-1] == '/') {
+            $nativeUrl = substr($nativeUrl, 0, -1);
+        }
+        // Ищем в маршрутах
         if (isset($this->_routes[$nativeUrl])) {
             $this->_execRoute($this->_routes[$nativeUrl]);
         } else {
@@ -91,7 +97,6 @@ class Route {
     }*/
 
 
-    //@todo deprecated
     protected function _setRouteParams($paramStr)
     {
         $result_url = array('url' => '/');

@@ -19,9 +19,15 @@ class Application {
         http_response_code ($status);
     }
 
-    public  function stopAjax($status)
+    public static function stopAjax($status)
     {
         header('Content-type: application/json');
         http_response_code ($status);
+    }
+
+    // Внутренний редирект
+    public static function redirect($utl)
+    {
+        header("Location: http://".$_SERVER['HTTP_HOST'] . $utl);
     }
 }

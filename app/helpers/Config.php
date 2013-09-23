@@ -22,6 +22,7 @@ class Config {
         $path = require __DIR__ . '/../config/' . APP_ENV . '/path.php';
         $configFile = ($useEnv) ? $path['CONFIG_PATH'] . DIRECTORY_SEPARATOR . APP_ENV . DIRECTORY_SEPARATOR . $fileName  : $path['CONFIG_PATH'] . DIRECTORY_SEPARATOR . $fileName;
         $configFile .= '.php';
+
         if (file_exists($configFile)) {
             $configuration = require $configFile;
             if (!empty($configuration[$key])) {

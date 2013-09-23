@@ -35,7 +35,7 @@ class User  extends DbModel
         // последний вход
         'last_login'    => 'last_login',
         // Дата регистрации
-        'create_at'     => 'create_at',
+        'created_at'     => 'created_at',
         // Дата бновления профиля
         'updated_at'    => 'updated_at'
     );
@@ -50,6 +50,9 @@ class User  extends DbModel
         $this->_validate('required', $postData['email'], 'E-mail', 'Not given');
         // корректный e-mail
         $this->_validate('email', $postData['email'], 'E-mail', 'E-mail is not valid');
+
+        // Уникальный пользователь
+        $this->_validate('unique', $postData['email'], 'E-mail', 'User already exists', array('field' => 'email'));
 
         // пароль обязателен
         $this->_validate('required', $postData['password'], 'Password', 'Not given');
@@ -106,5 +109,29 @@ class User  extends DbModel
     public function exists($field, $params)
     {
         return parent::exists($field, $params);
+    }
+
+    public function prepareValuesFromPost()
+    {
+        // Подготовим значения для записи в базу
+        // email  в нижний регистер
+        $_POST['User']['email'] = strtolower($_POST['User']['email']);
+        // триммируем все
+        foreach ($_POST['User'] as $key => $val) {
+            $_POST['User'][$key] = trim($val);
+        }
+    }
+
+    public function getImageFileExt($mimeType)
+    {
+        $fileExt = array(
+            'image/png' => '.png',
+            'image/jpg' => '.jpg',
+            'image/gif' => '.gif',
+        );
+        if (isset($fileExt[$mimeType])) {
+            return $fileExt[$mimeType];
+        }
+        return '.jpg';
     }
 }

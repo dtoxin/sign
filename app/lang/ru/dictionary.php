@@ -16,6 +16,7 @@ return array(
     'File size is too large' => 'Размер файла слишком велик',
     'Internal error' => 'Внутренняя ошибка',
     'File not loaded' => 'Файл не загружен',
+    'User already exists' => 'Пользователь с таким e-mail уже зарегистрирован.',
     'Internal application error' => 'Внутренняя ошибка приложения',
     'E-mail is not valid' => 'Неправильный E-mail',
     'Page nor found' => 'Страница не найдена',
